@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Room info</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+
+    <link rel="stylesheet" href="css/upload.css">
+
+    <script src="js/jquery-3.3.1.js"></script>
+
+
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkY9uAI7gg4-q4fOBBLQ0lJt6Z7FM6WDg"type="text/javascript"></script>
+    <script src="./js/uploadpic.js"></script>
+    <script>
+        //check address
+        function checkAddress() {
+            //get address
+            var address = $("#address").val();
+
+            if(address!=null){
+                //adjust non-empty
+                $("#address").css("border","");
+            }else{
+                //empty, add red border
+                $("#address").css("border","1px solid red");
+            }
+
+            return address;
+        }
+
+
+        function checkDetail(){
+            //get detail
+            var detail = $("#houseIntroduce").value.getBytes();
+
+            if(detail>500){
+                $("#houseIntroduce").css("border","");
+            }else{
+                $("#houseIntroduce").css("border","1px solid red");
+            }
+
+        }
+
+        $(function () {
+            $("#roomForm").submit(function(){
+
+                if(checkAddress()){
+                    //post to server
+                    $.post("house/addHouse",$(this).serialize(),function(data){
+                        if(data.flag){
+                            //success
+                            location.href="roominput_ok.html";
+                        }else{
+                            //failed
+                            $("#errorMsg").html(data.errorMsg);
+
+                        }
+                    });
+
+                }
+                return false;
+            });
+
+            //check when lost focus
+            $("#address").blur(checkAddress);
+            $("#password").blur(checkPassword);
+
+
+        });
+
+
+    </script>
+
+</head>
+<body>
+<!--引入头部-->
+<div id="header"></div>
+<!-- 头部 end -->
+<div class="rg_layout">
+    <div class="rg_form clearfix">
+        <div class="rg_form_left">
+            <p style="color: #9c0000">ROOM INFORMATION</p>
+            <p>UPLOAD HOUSE INFO</p>
+        </div>
+        <div class="rg_form_center">
+            <div id="errorMsg" style="color:red;text-align: center"></div>
+
+            <form id="roomForm" action="">
+
+
+                <table style="margin-top: 100px;">
+                    <tr>
+                        <td class="td_left">
+                            <label for="address">Address</label>
+                        </td>
+                        <td class="td_right selectline">
+                            <input type="text" id="address" name="address" placeholder="input room address" style="margin-right: 20px ">
+                            <select >
+
+                                <option value="1">KW region</option>
+                                <option value="2">Toronto region</option>
+                                <option value="3">Others</option>
+                            </select>
+
+                        </td>
+                        <td class="td_right address">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label >Facilities</label>
+                        </td>
+                        <td class="td_right selectbox">
+                            <input type="checkbox" name="sex" value="Gym"> Gym
+                            <input type="checkbox" name="sex" value="Washroom"> Private washroom
+                            <input type="checkbox" name="sex" value="machine"> Washing/Dry machine
+                            <input type="checkbox" name="sex" value="parking"> Parking
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label for="wechat">Wechat number</label>
+                        </td>
+                        <td class="td_right wechat">
+                            <input type="text" id="wechat" name="wechat" placeholder="Input your Wechat">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label for="houseIntroduce">Room detail</label>
+                        </td>
+                        <td class="td_right houseinfo">
+                            <div class="post_tr clearfix" validate-item>
+                                <div class="post_input" validate-ok>
+                                    <div id="content_msg" class="tip validate_error hide" validate-msg><i></i>500 words most!</div>
+                                    <script  id="editor" type="text/plain"></script>
+                                    <textarea name="content" id="houseIntroduce" validate-field validate-type="required" maxlength="500" rows="10" cols="50" placeholder="Detailed description can improve the efficiency of the sale of the house,&#13;&#10;keywords: 1.Housing characteristics 2.Surroundings 3.Traffic etc."></textarea>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                            <label for="houseImg" >Romm pics</label>
+                        </td>
+                        <td class="td_right">
+
+                                <div class="upload-content" id="houseImg">
+                                    <div class="content-img">
+                                        <ul class="content-img-list">
+
+                                        </ul>
+                                        <div class="file">
+                                            <i class="ico-plus"></i>upload file，jpg/png<input type="file" name="file" accept="image/*" id="upload" >
+                                        </div>
+                                    </div>
+                                    <div class="upload-tips">
+                                        at most 4 pics ，1M maximum for each
+                                    </div>
+                                </div>
+<
+<!--                            https://juejin.im/post/5ad365e4f265da237d0375a5-->
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="td_left">
+                            <label for="check">Verify Code</label>
+                        </td>
+                        <td class="td_right check">
+                            <input type="text" id="check" name="check" class="check">
+                            <img src="checkCode" height="32px" alt="" onclick="changeCheckCode(this)">
+                            <script type="text/javascript">
+                                //click to get new code
+                                function changeCheckCode(img) {
+                                    img.src="checkCode?"+new Date().getTime();
+                                }
+                            </script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left">
+                        </td>
+                        <td class="td_right check">
+                            <input type="submit" class="submit" style="color: #ffffff" value="Submit">
+                            <span id="msg" style="color: red;"></span>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<!--import footer-->
+<div id="footer"></div>
+
+<script type="text/javascript" src="js/include.js"></script>
+
+</body>
+</html>

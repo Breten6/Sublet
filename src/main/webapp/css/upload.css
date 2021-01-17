@@ -1,0 +1,236 @@
+.rg_layout{
+    width: 100%;
+    height: 1585px;
+    background: url(../images/register_bg.png) no-repeat center;
+    background-size: 100% 780px;
+    overflow: hidden;
+}
+.rg_layout .rg_form{
+    width: 1886px;
+    height: 2534px;
+    background-color: #fff;
+    margin:24px auto;
+    border:8px solid #eeeeee;
+    box-sizing: border-box;
+}
+
+.rg_layout .rg_form > .rg_form_left{
+    width:256px;
+    float: left;
+    padding-top:20px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.rg_layout .rg_form > .rg_form_center{
+    width:1500px;
+    float: left;
+    padding-top:10px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.rg_layout .rg_form > .rg_form_right{
+    width:56px;
+    float: right;
+}
+
+.rg_form > .rg_form_left > p:first-child{
+    font-size: 20px;
+    color:#ffcd26;
+
+}
+.rg_form > .rg_form_left > p:last-child{
+    font-size: 20px;
+    color: #a6a6a6;
+}
+.rg_form > .rg_form_center .td_left{
+    width: 65px;
+    text-align: left;
+}
+.rg_form > .rg_form_center table{
+    vertical-align: top;
+}
+.rg_form > .rg_form_center table tr{
+    height: 100px;
+}
+
+.rg_form > .rg_form_center .td_right{
+    width: 293px;
+}
+.rg_form_center .td_right > input[type="text"],.rg_form_center .td_right > input[type="date"]{
+    width: 256px;
+    height: 32px;
+    line-height: 32px;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border:1px solid #a6a6a6;
+    float: left;
+}
+
+.rg_form > .rg_form_center .td_right.check{
+    padding-left: 36px;
+    box-sizing: border-box;
+}
+.rg_form > .rg_form_center .td_right.houseinfo{
+    padding-left: 36px;
+    box-sizing: border-box;
+}
+.rg_form > .rg_form_center .td_right.wechat{
+    margin-left: 36px;
+
+}
+.rg_form > .rg_form_center .td_right.selectbox{
+    padding-left: 36px;
+    box-sizing: border-box;
+}
+.rg_form > .rg_form_center .td_right.selectline{
+    padding-left: 36px;
+    box-sizing: border-box;
+
+}
+.rg_form > .rg_form_center .td_right > .address{
+    float: right;
+
+}
+.rg_form > .rg_form_center .td_right > .check{
+    width: 118px;
+    float: left;
+    margin-right:14px;
+}
+.rg_form > .rg_form_center .td_right > .submit{
+    width: 120px;
+    height: 36px;
+    line-height: 36px;
+    background-color: #9c0000;
+    font-size: 14px;
+}
+.rg_form > .rg_form_right >p{
+    float: right;
+    font-size: 14px;
+    padding: 20px 12px 0 0;
+    box-sizing: border-box;
+}
+.rg_form > .rg_form_right >p >a{
+    color: #fc8989;
+}
+.rg_form > .rg_form_center .td_right > .upload-content{
+    width: 682px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #666;
+    padding: 20px;
+    background: #fff;
+}
+/*
+-------------------------------------
+文件名：index.css
+说明: 文件上传css
+创建时间：2018/4/14
+作者：fozero
+Github:https://github.com/fozero
+博客：https://www.cnblogs.com/fozero
+-------------------------------------
+*/
+.rg_form > .rg_form_center .td_right > .upload-content .content-img{
+    width: 682px;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .content-img-list{
+    display: inline;
+    width: 682px;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .content-img .ico-plus{
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -4px;
+    margin-left: 2px;
+    width: 28px;
+    height: 28px;
+    background: url('https://caiyunupload.b0.upaiyun.com/newweb/imgs/icon-plus.png') center/28px 28px;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .content-img-list-item{
+    position: relative;
+    display: inline-block;
+    width: 165px;
+    height: 96px;
+    margin-top: 20px;
+    margin-left: 7px;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .content-img-list-item:first-child{
+    margin-left: 0;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .content-img-list-item .hide{
+    display: none;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .content-img-list-item .delete-btn{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    height: 28px;
+    line-height: 28px;
+    color: #fff;
+    cursor: pointer;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .content-img-list-item .ico-delete{
+    display: inline-block;
+    vertical-align: middle;
+    width: 12px;
+    height: 13px;
+    background: url('https://caiyunupload.b0.upaiyun.com/newweb/imgs/icon-delete.png') center/12px 13px;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .content-img-list-item img{
+    width: 165px;
+    height: 96px;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .upload-tips{
+    padding-top: 10px;
+    text-align: left;
+    width: 100%;
+}
+/*图片上传按钮*/
+.rg_form > .rg_form_center .td_right > .upload-content .file {
+    position: relative;
+    display: inline-block;
+    border: 1px dashed #DEDEDE;
+    border-radius: 4px;
+    color: #999999;
+    text-decoration: none;
+    text-indent: 0;
+    width: 165px;
+    height: 96px;
+    line-height: 96px;
+    margin-top: 20px;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .file input {
+    position: absolute;
+    font-size: 0px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 165px;
+    height: 96px;
+}
+.rg_form > .rg_form_center .td_right > .upload-content .file:hover {
+    color: #999999;
+}
+.rg_form > .rg_form_center .td_right > .upload-submit{
+    text-align: center;
+    margin-top: 50px;
+}
+.rg_form > .rg_form_center .td_right > .upload-submit .btn-submit-upload{
+    display: inline-block;
+    width: 170px;
+    height: 40px;
+    text-align: center;
+    line-height: 38px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: #ff8819;
+    color: #fff;
+    border: 1px solid #ff8819;
+    border-radius: 2px;
+    text-decoration: none;
+}

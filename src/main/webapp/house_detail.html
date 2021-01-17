@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Room detail</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/room-detail.css">
+
+
+</head>
+
+<body>
+<div id="header"></div>
+<div class="wrap">
+    <div class="bread_box">
+        <a href="/"></a>
+        <span> &gt;</span>
+        <a href="#">KW Region</a><span>></span>
+        <a href="#"></a>
+    </div>
+    <div class="prosum_box">
+        <dl class="prosum_left">
+            <dt>
+                <img alt="" class="big_img"
+                     src="">
+            </dt>
+            <dd id="dd">
+                <a class="up_img up_img_disable"></a>
+                <a title="" class="little_img"
+                   data-bigpic="">
+                    <img src="">
+                </a>
+                <a title="" class="little_img cur_img"
+                   data-bigpic="">
+                    <img src="">
+                </a>
+                <a title="" class="little_img"
+                   data-bigpic="">
+                    <img src="">
+                </a>
+                <a title="" class="little_img"
+                   data-bigpic="">
+                    <img src="">
+                </a>
+                <a title="" class="little_img"
+                   data-bigpic=""
+                   style="display:none;">
+                    <img src="">
+                </a>
+                <a title="" class="little_img"
+                   data-bigpic=""
+                   style="display:none;">
+                    <img src="">
+                </a>
+                <a class="down_img down_img_disable" style="margin-bottom: 0;"></a>
+            </dd>
+        </dl>
+        <div class="prosum_right">
+            <p class="pros_title" id="rname">Fergus house 30 floor</p>
+            <p class="hot" id="routeIntroduce"></p>
+            <div class="pros_other">
+                <p>Wechat : <span id="consphone">ruaruaruarua6</span></p>
+                <p>Address ： <span id="address">Fergus house</span></p>
+                <p>Do not pay the deposit in advance and all the costs.Keep chats and other evidence.Be sure to see the house on the spot.</p>
+            </div>
+            <div class="pros_price">
+                <p class="price"><strong id="price">$9999.00</strong></p>
+                <p class="collect">
+                    <a class="btn" id="favorite" onclick="addFavorite();"><i
+                            class="glyphicon glyphicon-heart-empty"></i>Like it</a>
+                    <span id="favoriteCount">Liked 100 times</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="map">
+        <span>Location</span>
+        <div class="ggmap">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2895.3641815283418!2d-80.53854118450805!3d43.4738696791279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882bf4073d4d5043%3A0x483bd2fad8e8e58c!2sFergus%20House!5e0!3m2!1szh-CN!2sca!4v1588388491185!5m2!1szh-CN!2sca"
+                    width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                    tabindex="0"></iframe>
+        </div>
+    </div>
+    <div class="you_need_konw">
+        <span>Room detail</span>
+        <div class="notice">
+            <p id="houseIntroduce">DO NOT RENT IT!!!</p>
+        </div>
+    </div>
+</div>
+<div id="footer"></div>
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/include.js"></script>
+<script src="js/getParameter.js"></script>
+<script>
+    $(document).ready(function () {
+
+        //get rid
+        var rid = getParameter("rid");
+
+        //route/findOne
+        $.get("house/findOne", {rid: rid}, function (house) {
+            //3.fullfill url with room deatils
+            $("#rname").html(house.rname);
+            $("#houseIntroduce").html(house.houseIntroduce);
+            $("#price").html("¥" + house.price);
+            $("#conswechat").html(house.seller.wechat);
+            $("#address").html(house.seller.address);
+            //set liked times
+            $("#favoriteCount").html("Liked" + house.count + "times");
+        });
+
+
+
+    $(function () {
+        // adjust whether user liked this room before
+        var rid = getParameter("rid");
+        $.get("house/isFavorite", {rid: rid}, function (flag) {
+            if (flag) {
+                // liked
+                //<a  class="btn already" disabled="disabled">
+                //set button looks
+                $("#favorite").addClass("already");
+                $("#favorite").attr("disabled", "disabled");
+
+                //disable button
+                $("#favorite").removeAttr("onclick");
+            } else {
+                // didnt liked
+            }
+        });
+
+
+    });
+
+    //favourite room
+    function addFavorite() {
+        var rid = getParameter("rid");
+        // logged or not
+        $.get("user/findOne", {}, function (user) {
+            if (user) {
+                //logged
+                $.get("house/addFavorite", {rid: rid}, function () {
+
+                    //refresh page
+                    location.reload();
+                });
+
+            } else {
+                //Unlogged
+                alert("You should log in first");
+                //login pls
+                location.href = "http://localhost/travel/login.html";
+            }
+        })
+    }
+    })
+
+</script>
+</body>
+
+</html>
